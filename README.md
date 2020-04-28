@@ -66,4 +66,96 @@ In your angular.json file, there may be references to your style.css files which
 
 ## anims
 
+The first part of the tutorial involved playing with simple animations.
+
+src/app/app.component.ts
+```
+import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
+  }));
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'myanims'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('myanims');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.content span').textContent).toContain('myanims app is running!');
+  });
+});
+```
+
+src/app/app.component.html
+```
+...
+<div class="mycontent" role="main">
+  <div class="jumbotron" style="background-color: #fff; height: calc(9vh);">
+    <h1>Angular Bootstrap Demo</h1>
+    <p class="lead">
+      {{ leadLine }}
+    </p>
+
+  </div>
+
+  <div  class="open-close-container">
+    <button [@openClose]="isOpen ? 'open' : 'closed'" class="btn btn-lg btn-primary" (click)="toggle()">Click me!</button>
+    <button [@removeMe]="btnState" class="btn btn-lg btn-primary" (click)="toggle()">Click me!</button>
+  </div>
+  <div>
+    <ul>
+      <li *ngFor="let item of items" [@myTrigger]='state' 
+      (@myTrigger.start)="animStart($event)" (@myTrigger.done)="animComplete($event)"  >
+        {{ item }}        
+      </li>
+    </ul>
+  </div>
+
+  <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>
+...
+```
+
+src/app/app.component.scss
+```
+ul {
+    list-style-type: none;
+    margin: 30px 30px 0 0;
+    padding: 0;
+}
+li {
+    padding: 15px;
+    width: 100%;
+    background: #f1f1f1;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+.mycontent {
+    width: 90%;
+    padding: 90px;
+}
+```
+
+## route
+
 
