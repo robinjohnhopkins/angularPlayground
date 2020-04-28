@@ -193,3 +193,5 @@ an animation for adding item
 an animation for deleting an item
 
 git tag 'add.delete.input.focus.animations'
+
+git tag 'add.tab.change.animations'
