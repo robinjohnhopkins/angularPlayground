@@ -38,6 +38,7 @@ ng new your_application --style=scss
 
 ### migrate:
 
+matey suggested this:
 ```
 ng config schematics.@schematics/angular:component.styleext scss
 ```
@@ -47,6 +48,18 @@ This would change the configuration in angular.json as follows.
 "@schematics/angular:component": {
 "styleext": "scss"
 }
+```
+
+above was close but actually need was:
+```
+  "projects": {
+    "myanims": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
 ```
 
 ### Step 2: Rename the css files
@@ -157,5 +170,18 @@ li {
 ```
 
 ## route
+
+ng generate component Howto
+
+ng generate component Examples
+
+
+npm i foundation-sites --save
+
+npm WARN bootstrap@4.4.1 requires a peer of popper.js@^1.16.0 but none is installed. You must install peer dependencies yourself.
+npm WARN sass-loader@8.0.2 requires a peer of node-sass@^4.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN sass-loader@8.0.2 requires a peer of fibers@>= 3.1.0 but none is installed. You must install peer dependencies yourself.
+npm WARN webpack-subresource-integrity@1.4.0 requires a peer of html-webpack-plugin@^2.21.0 || ~3 || >=4.0.0-alpha.2 <5 but none is installed. You must install peer dependencies yourself.
+npm WARN foundation-sites@6.6.3 requires a peer of what-input@>=4.1.0 but none is installed. You must install peer dependencies yourself.
 
 

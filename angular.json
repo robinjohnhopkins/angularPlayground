@@ -5,7 +5,11 @@
   "projects": {
     "myanims": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -24,12 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/foundation-sites/scss/foundation.scss",
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/foundation-sites/dist/js/foundation.min.js"
             ]
           },
           "configurations": {
@@ -92,7 +98,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -123,12 +129,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "myanims",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "scss"
     }
   }
 }
