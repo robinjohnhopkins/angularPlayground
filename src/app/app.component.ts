@@ -19,6 +19,51 @@ Foundation.addToJquery($);
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
+    trigger('focusPanel', [
+      state('inactive', style({
+        transform: 'scale(1)'
+      })),
+      state('active',   style({
+        transform: 'scale(1.04)'
+      })),
+      transition('inactive => active', animate('500ms ease-in')),
+      transition('active => inactive', animate('500ms ease-out'))
+    ]),
+    trigger('itemEnter', [
+
+      state('in', style({transform: 'translateY(0)'})),
+
+      transition('void => *', [
+        style({transform: 'translateY(-100%)',opacity: '0'}),
+        animate('300ms ease-out')
+      ]),
+      transition('* => void', [ // to void means absent from dom
+        animate('300ms ease-out', style({transform: 'scaleY(0) translateY(200px)'}))
+      ])
+    ]),
+    trigger('note', [
+
+      state('inactive', style({
+        opacity: '0'
+      })),
+      state('active',   style({
+        opacity: '1'
+      })),
+      transition('inactive => active', [
+        animate(300, keyframes([
+          style({opacity: 0, transform: 'translateY(0)', offset: 0}),
+          style({opacity: 1, transform: 'translateY(-15px)',  offset: 0.6}),
+          style({opacity: 1, transform: 'translateY(0)',     offset: 1.0})
+        ]))
+      ]),
+      transition('active => inactive', [
+        animate(300, keyframes([
+          style({opacity: 1, transform: 'translateY(0)', offset: 0}),
+          style({opacity: 1, transform: 'translateY(-15px)',  offset: 0.7}),
+          style({opacity: 0, transform: 'translateY(100%)',     offset: 1.0})
+        ]))
+      ])
+    ]),
     // This removes btn on click
     // trigger('removeMe', [
     //   state('out', style({
@@ -80,7 +125,7 @@ Foundation.addToJquery($);
 export class AppComponent {
   title = 'myanims';
   isOpen = true;
-  state = 'fadeIn';
+  state = 'inactive';
   btnState :string = 'in';
   leadLine = 'My lead line';
   // items = ['item1', 'item2', 'item3'];
@@ -90,6 +135,21 @@ export class AppComponent {
     $(document).foundation();
   }
 
+  toggleFocus(){
+    this.state = (this.state === 'inactive' ? 'active' : 'inactive');
+  }
+  submitItem(event){
+    console.log('submit');
+    if (event.charCode === 13){
+      // enter key
+      this.items.push(event.target.value);
+      console.log('submit', event.target.value);
+      event.target.value = '';
+    }
+  }
+  removeItem(event, i){
+    this.items.splice(i,1);
+  }
   toggle() {
     this.isOpen = !this.isOpen;
     this.items.push('another item');

@@ -184,4 +184,12 @@ npm WARN sass-loader@8.0.2 requires a peer of fibers@>= 3.1.0 but none is instal
 npm WARN webpack-subresource-integrity@1.4.0 requires a peer of html-webpack-plugin@^2.21.0 || ~3 || >=4.0.0-alpha.2 <5 but none is installed. You must install peer dependencies yourself.
 npm WARN foundation-sites@6.6.3 requires a peer of what-input@>=4.1.0 but none is installed. You must install peer dependencies yourself.
 
+## start point
 
+git tag 'before.animations'
+
+added input area getting bigger on focus,
+an animation for adding item
+an animation for deleting an item
+
+git tag 'add.delete.input.focus.animations'
